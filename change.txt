@@ -1,0 +1,24 @@
+
+{% block table %}
+                                        {% for profile in profiles%}
+                                        <tr>
+                                            <td>{{profile.categorie}}</td>
+                                            <td>{{profile.depot}}</td>
+                                            <td>{{profile.p_reference}}</td>
+                                            <td>{{profile.nomsociete}}</td>
+                                            {% if profile.state == 'Disponible' %}{% set colr ='#2EC4B6' %}{% endif %}
+                                            {% if profile.state == 'Bientôt épuisé' %}{% set colr ='#FF9F1C' %}{% endif %}
+                                            {% if profile.state == 'Épuisé' %}{% set colr ='#E71D36' %}{% endif %}
+                                            <td style="color:{{ colr }}">{{profile.state}}</td>
+                                            <td>{{profile.stock}}</td>
+                                            <td>{{profile.valeur}}</td>
+                                            <td>{{profile.Adresse}}</td>
+                                            <td>{{profile.dateDepot}}</td>
+                                            <td>
+                                                <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-toggle="dropdown" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                                                    <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in">
+                                                        <a class="dropdown-item" href="/profiles/delete/{{profile.p_reference}}">&nbsp;Supprimer</a><a class="dropdown-item" href="/profiles/modify/{{profile.p_reference}}">&nbsp;Modifier</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
